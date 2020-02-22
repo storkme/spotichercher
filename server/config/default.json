@@ -1,0 +1,8 @@
+{
+  "spotify": {
+    "apiUrl": "https://api.spotify.com",
+    "accountsUrl": "https://accounts.spotify.com",
+    "scope": "playlist-read-private user-modify-playback-state",
+    "authorizeUrl": "https://accounts.spotify.com/authorize"
+  }
+}

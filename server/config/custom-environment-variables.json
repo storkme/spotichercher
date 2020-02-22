@@ -1,0 +1,9 @@
+{
+  "spotify": {
+    "apiUrl": "SPOTIFY_API_URL",
+    "clientId": "SPOTIFY_CLIENT_ID",
+    "clientSecret": "SPOTIFY_CLIENT_SECRET"
+  },
+  "frontendUrl": "FRONTEND_URL",
+  "jwtSecret": "JWT_SECRET"
+}
