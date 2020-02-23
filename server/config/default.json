@@ -4,5 +4,6 @@
     "accountsUrl": "https://accounts.spotify.com",
     "scope": "playlist-read-private user-modify-playback-state",
     "authorizeUrl": "https://accounts.spotify.com/authorize"
-  }
+  },
+  "frontendUrl": "https://spotichercher.not.gd"
 }

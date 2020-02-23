@@ -2,7 +2,6 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import fetch from 'node-fetch';
 import * as config from 'config';
 import { resolve } from 'url';
-import { SpotifyAuthResponse } from '../../../shared/interfaces';
 
 @Injectable()
 export class SpotifyService {
@@ -33,4 +32,12 @@ export class SpotifyService {
 
     throw new UnauthorizedException({ spotify_error: await result.json() });
   }
+}
+
+export interface SpotifyAuthResponse {
+  access_token: string;
+  token_type: 'Bearer';
+  scope: string;
+  expires_in: number;
+  refresh_token: string;
 }

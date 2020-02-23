@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "spotifindaperson": {
+    "spotichercher": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/spotifindaperson",
+            "outputPath": "dist/spotichercher",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "spotifindaperson:build"
+            "browserTarget": "spotichercher:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "spotifindaperson:build:production"
+              "browserTarget": "spotichercher:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "spotifindaperson:build"
+            "browserTarget": "spotichercher:build"
           }
         },
         "test": {
@@ -114,18 +114,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "spotifindaperson:serve"
+            "devServerTarget": "spotichercher:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "spotifindaperson:serve:production"
+              "devServerTarget": "spotichercher:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "spotifindaperson",
+  "defaultProject": "spotichercher",
   "cli": {
     "analytics": false
   }
