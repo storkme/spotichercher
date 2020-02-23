@@ -11,3 +11,4 @@ RUN npm run build -- --no-progress
 
 FROM nginx:1.17.8 as prod
 COPY --from=dev /app/dist/spotichercher /usr/share/nginx/html
+COPY --from=dev /app/nginx.conf /etc/nginx/conf.d/default.conf
