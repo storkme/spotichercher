@@ -21,7 +21,7 @@ export class AuthService {
   }
 
   setToken(token: string, refreshToken: string) {
-    this._token = jwt_decode(token);
+    this._token = token;
     localStorage.setItem(TOKEN, token);
     localStorage.setItem(REFRESH_TOKEN, refreshToken);
   }
