@@ -2,7 +2,7 @@
   "spotify": {
     "apiUrl": "https://api.spotify.com",
     "accountsUrl": "https://accounts.spotify.com",
-    "scope": "playlist-read-private user-modify-playback-state",
+    "scope": "playlist-read-private user-modify-playback-state user-read-playback-state user-read-currently-playing",
     "authorizeUrl": "https://accounts.spotify.com/authorize"
   },
   "frontendUrl": "https://spotichercher.not.gd"

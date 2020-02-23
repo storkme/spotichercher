@@ -1,1 +1,24 @@
-<h1></h1>
+<h1>playback info</h1>
+<p>Testing getting live playback info...</p>
+<ng-container *ngIf="playbackInfo$ | async as playbackInfo; else notPlaying">
+  <img
+    [src]="playbackInfo.item.album?.images[0].url"
+    [style.width.px]="playbackInfo.item.album?.images[0].width"
+    [style.height.px]="playbackInfo.item.album?.images[0].height"
+  />
+
+  <h2>{{ playbackInfo.item.name }} from {{ playbackInfo.item.album?.name }}</h2>
+
+  <code
+    >{{ formatMs(playbackInfo.progress_ms) }} /
+    {{ formatMs(playbackInfo.item.duration_ms) }}</code
+  >
+
+  <h4>dump</h4>
+  <pre>{{ playbackInfo | json }}</pre>
+</ng-container>
+
+<ng-template #notPlaying>
+  <h2>It doesn't look like you're playing anything?</h2>
+  <p>Play something, it'll show up here.</p>
+</ng-template>

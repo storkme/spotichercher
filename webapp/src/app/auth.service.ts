@@ -16,8 +16,21 @@ export class AuthService {
     this.onInit();
   }
 
+  get expired() {
+    return !this._token || (jwt_decode(this._token).exp * 1000) < Date.now();
+  }
+
+
   get token() {
-    return this._token;
+    console.log('jwt_decode(this._token).exp', jwt_decode(this._token).exp);
+    console.log('this.expired', this.expired);
+    if (!this.expired) {
+      return this._token;
+    }
+  }
+
+  get refreshToken() {
+    return localStorage.getItem(REFRESH_TOKEN);
   }
 
   setToken(token: string, refreshToken: string) {

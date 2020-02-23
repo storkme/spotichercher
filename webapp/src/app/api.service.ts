@@ -36,6 +36,10 @@ export class ApiService {
   playlists() {
     return this.call('GET', '/spotify/playlists');
   }
+
+  playback() {
+    return this.call('GET', '/spotify/playback');
+  }
 }
 
 export interface AuthResponse {

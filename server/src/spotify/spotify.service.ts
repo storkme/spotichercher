@@ -52,6 +52,25 @@ export class SpotifyService {
       });
     }
   }
+
+  async getPlaybackInfo(token: string): Promise<any> {
+    const url = resolve(config.get('spotify.apiUrl'), '/v1/me/player/currently-playing');
+    const result = await fetch(url, {
+      method: 'GET',
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    if (result.ok) {
+      if (result.status === 204) {
+        return;
+      }
+      return result.json();
+    } else {
+      throw new InternalServerErrorException({
+        spotify_error: await result.json(),
+      });
+    }
+  }
 }
 
 export interface SpotifyAuthResponse {
