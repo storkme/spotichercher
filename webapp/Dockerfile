@@ -7,7 +7,7 @@ RUN npm ci
 COPY . .
 
 # use --no-progress to cut down on console output during builds in CI
-RUN npm run build -- --no-progress
+RUN npm run build:prod -- --no-progress
 
 FROM nginx:1.17.8 as prod
 COPY --from=dev /app/dist/spotichercher /usr/share/nginx/html

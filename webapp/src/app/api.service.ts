@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { AuthService } from './auth.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,20 +13,32 @@ export class ApiService {
     private authService: AuthService,
   ) {}
 
-  private call(method: string, path: string, body?: any) {
+  private call<T>(method: string, path: string, body?: any): Observable<T> {
     return this.httpClient.request(
       method,
       new URL(path, environment.apiUrl).toString(),
       {
         headers: new HttpHeaders({
-          Authorization: `Bearer ${this.authService.token}`,
+          ...(this.authService.token && {
+            Authorization: `Bearer ${this.authService.token}`,
+          }),
         }),
+        responseType: 'json',
         ...(body && { body }),
       },
-    );
+    ) as Observable<T>;
   }
 
-  auth(code: string) {
+  auth(code: string): Observable<AuthResponse> {
     return this.call('POST', '/auth/login', { code });
   }
+
+  playlists() {
+    return this.call('GET', '/spotify/playlists');
+  }
+}
+
+export interface AuthResponse {
+  access_token: string;
+  refresh_token: string;
 }

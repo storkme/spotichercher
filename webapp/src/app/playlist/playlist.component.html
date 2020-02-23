@@ -1,0 +1,11 @@
+<ng-container *ngIf="playlists$ | async as playlist">
+  <h1>Playlists</h1>
+  <ul class="playlists">
+    <li *ngFor="let playlist of playlist.items">
+      {{ playlist.name }}
+<!--      <a [routerLink]="[playlist.id]">-->
+<!--        {{ playlist.name }}-->
+<!--      </a>-->
+    </li>
+  </ul>
+</ng-container>

@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  webapp:
+    image: gcr.io/spotichercher/webapp-prod:latest
+    ports:
+    - 41080:80
+  server:
+    image: gcr.io/spotichercher/server:latest
+    ports:
+      - 41081:3000
+    environment:
+      - JWT_SECRET
+      - SPOTIFY_CLIENT_ID
+      - SPOTIFY_CLIENT_SECRET

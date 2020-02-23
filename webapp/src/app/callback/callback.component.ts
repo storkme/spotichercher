@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap, tap } from 'rxjs/operators';
 import { ApiService } from '../api.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-callback',
@@ -14,21 +15,21 @@ export class CallbackComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private apiService: ApiService,
-    // private router: Router,
+    private authService: AuthService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
-    const t = Date.now();
     this.activatedRoute.queryParams
       .pipe(
         tap(() => (this.loading = true)),
         switchMap(params => this.apiService.auth(params.code)),
         tap(() => (this.loading = false)),
-        tap(next => console.log(`+${Date.now() - t} → next: `, next)),
       )
       .subscribe(next => {
+        this.authService.setToken(next.access_token, next.refresh_token);
 
-        console.log('auth done:', next);
+        this.router.navigate(['/player']);
       });
 
     // this error means we can try again: "error":"invalid_grant","error_description":"Authorization code expired"

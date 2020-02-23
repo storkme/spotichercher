@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
+import * as jwt_decode from 'jwt-decode';
 
 const TOKEN = 'token';
+const REFRESH_TOKEN = 'refresh_token';
 
 @Injectable({
   providedIn: 'root',
@@ -18,9 +20,10 @@ export class AuthService {
     return this._token;
   }
 
-  setToken(token: string) {
-    this._token = token;
+  setToken(token: string, refreshToken: string) {
+    this._token = jwt_decode(token);
     localStorage.setItem(TOKEN, token);
+    localStorage.setItem(REFRESH_TOKEN, refreshToken);
   }
 
   /**

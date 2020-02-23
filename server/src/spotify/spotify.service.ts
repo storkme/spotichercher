@@ -1,4 +1,8 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import fetch from 'node-fetch';
 import * as config from 'config';
 import { resolve } from 'url';
@@ -31,6 +35,22 @@ export class SpotifyService {
     }
 
     throw new UnauthorizedException({ spotify_error: await result.json() });
+  }
+
+  async getPlaylists(token: string): Promise<any> {
+    const url = resolve(config.get('spotify.apiUrl'), '/v1/me/playlists');
+    const result = await fetch(url, {
+      method: 'GET',
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    if (result.ok) {
+      return result.json();
+    } else {
+      throw new InternalServerErrorException({
+        spotify_error: await result.json(),
+      });
+    }
   }
 }
 
