@@ -22,8 +22,6 @@ export class AuthService {
 
 
   get token() {
-    console.log('jwt_decode(this._token).exp', jwt_decode(this._token).exp);
-    console.log('this.expired', this.expired);
     if (!this.expired) {
       return this._token;
     }
